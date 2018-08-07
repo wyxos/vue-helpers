@@ -1,5 +1,5 @@
 <template>
-    <span v-if="exists(name)">{{ get(name) }}</span>
+    <span class="error" v-if="exists(name)">{{ get(name) }}</span>
 </template>
 <script>
     export default {
