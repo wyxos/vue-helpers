@@ -20,6 +20,14 @@ export default {
                     return this.states.find(state => state.key === key);
                 },
                 set(key, value = false) {
+                    let match = this.find(key);
+
+                    if (match) {
+                        match.value = value;
+
+                        return match;
+                    }
+
                     let state = {
                         key,
                         value
