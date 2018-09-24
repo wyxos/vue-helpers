@@ -4,10 +4,30 @@ import state from './state';
 import modals from './modals';
 import boolean from './boolean';
 import request from './request';
+import UiAlert from 'keen-ui/src/UiAlert';
+import UiButton from 'keen-ui/src/UiButton';
+import UiConfirm from 'keen-ui/src/UiConfirm';
+import UiIcon from 'keen-ui/src/UiIcon';
+import UiModal from 'keen-ui/src/UiModal';
 
 export default {
     install(Vue, options) {
-        Vue.use(require('keen-ui'));
+        Vue.component('ui-alert', UiAlert);
+        Vue.component('ui-button', UiButton);
+        Vue.component('ui-confirm', UiConfirm);
+        Vue.component('ui-icon', UiIcon);
+        Vue.component('ui-modal', {
+            mixins: [UiModal],
+            methods: {
+                restrictFocus(e) {
+                    // if (!this.$refs.container.contains(e.target)) {
+                    //   e.stopPropagation();
+                    //   this.$refs.container.focus();
+                    // }
+                }
+            }
+        });
+
         Vue.use(events);
         Vue.use(errors);
         Vue.use(state);
