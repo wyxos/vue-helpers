@@ -6,6 +6,7 @@ import boolean from './boolean';
 import request from './request';
 import UiAlert from 'keen-ui/src/UiAlert';
 import UiButton from 'keen-ui/src/UiButton';
+import UiIconButton from 'keen-ui/src/UiIconButton';
 import UiConfirm from 'keen-ui/src/UiConfirm';
 import UiIcon from 'keen-ui/src/UiIcon';
 import UiModal from 'keen-ui/src/UiModal';
@@ -14,6 +15,7 @@ export default {
     install(Vue, options) {
         Vue.component('ui-alert', UiAlert);
         Vue.component('ui-button', UiButton);
+        Vue.component('ui-button', UiIconButton);
         Vue.component('ui-confirm', UiConfirm);
         Vue.component('ui-icon', UiIcon);
         Vue.component('ui-modal', {
