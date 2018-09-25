@@ -15,7 +15,7 @@ export default {
     install(Vue, options) {
         Vue.component('ui-alert', UiAlert);
         Vue.component('ui-button', UiButton);
-        Vue.component('ui-button', UiIconButton);
+        Vue.component('ui-icon-button', UiIconButton);
         Vue.component('ui-confirm', UiConfirm);
         Vue.component('ui-icon', UiIcon);
         Vue.component('ui-modal', {
