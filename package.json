@@ -11,6 +11,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "vue-events": "^3.1.0",
-    "keen-ui": "git+https://jjaulimsing@bitbucket.org/orckidlab/keen-ui.git"
+    "keen-ui": "github:JosephusPaye/Keen-UI#next"
   }
 }
