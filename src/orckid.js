@@ -7,26 +7,29 @@ import request from './request';
 import KeenUi from 'keen-ui';
 
 export default {
-    install(Vue, options) {
-        Vue.use(KeenUi);
-        Vue.use(events);
-        Vue.use(errors);
-        Vue.use(state);
-        Vue.use(modals);
-        Vue.use(boolean);
+  install(Vue, options) {
+    Vue.use(KeenUi);
+    Vue.use(events);
+    Vue.use(errors);
+    Vue.use(state);
+    Vue.use(modals);
+    Vue.use(boolean);
 
-        Vue.prototype.$axios = request;
+    Vue.prototype.$axios = request;
 
-        Vue.prototype.$routes = function (name, parameters) {
-            return name ? window.Laravel.routes[name] : window.Laravel.routes;
-        };
+    Vue.prototype.$routes = function (name, parameters) {
+      return name ? window.Laravel.routes[name] : window.Laravel.routes;
+    };
 
-        Vue.prototype.$openModal = function (ref) {
-            this.$refs[ref].open();
-        };
-
-        Vue.prototype.$closeModal = function (ref) {
-            this.$refs[ref].close();
-        };
-    }
+    Vue.mixin({
+      methods: {
+        openModal(ref) {
+          this.$refs[ref].open();
+        },
+        closeModal(ref) {
+          this.$refs[ref].close();
+        }
+      }
+    });
+  }
 };
