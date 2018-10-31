@@ -71,8 +71,8 @@ export default {
 
     Vue.mixin({
       computed: {
-        $errors() {
-          return this.$errors.errors;
+        errors() {
+          return this.$errors.$data;
         }
       }
     });
