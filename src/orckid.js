@@ -4,7 +4,7 @@ import state from './state';
 import modals from './modals';
 import boolean from './boolean';
 import request from './request';
-import KeenUi from 'keen-ui';
+import KeenUi from 'keen-ui/dist/keen-ui.min';
 
 export default {
   install(Vue, options) {
