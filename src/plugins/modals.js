@@ -4,10 +4,10 @@ export default {
 
     Vue.prototype.$modals = new Vue({
       methods: {
-        open(modal, options) {
+        open: function (modal, options) {
           this.$events.fire('openModal', modal, options);
         },
-        close(modal, options) {
+        close: function (modal, options) {
           this.$events.fire('closeModal', modal, options);
         }
       }

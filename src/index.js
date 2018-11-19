@@ -8,13 +8,13 @@ const axios = require('./plugins/axios-plugin');
 
 let mixin = {
   methods: {
-    openModal(ref) {
+    openModal: function (ref) {
       this.$refs[ref].open();
     },
-    closeModal(ref) {
+    closeModal: function (ref) {
       this.$refs[ref].close();
     },
-    handleError(error) {
+    handleError: function (error) {
       const status = error && error.response ? error.response.status : 500;
 
       const hasErrors = error.response && error.response.data && error.response.data.errors;
