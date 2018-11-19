@@ -1,10 +1,10 @@
-import keenUi from 'keen-ui/dist/keen-ui.min';
-import events from 'vue-events';
-import errors from './errors';
-import state from './state';
-import modals from './modals';
-import boolean from './boolean';
-import axios from './axios-plugin';
+const keenUi = require('keen-ui/dist/keen-ui.min');
+const events = require('vue-events');
+const errors = require('./plugins/errors');
+const state = require('./plugins/state');
+const modals = require('./plugins/modals');
+const boolean = require('./plugins/boolean');
+const axios = require('./plugins/axios-plugin');
 
 let mixin = {
   methods: {
