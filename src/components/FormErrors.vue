@@ -11,10 +11,10 @@
       }
     },
     methods: {
-      exists(name) {
+      exists: function (name) {
         return this.$errors.exists(name);
       },
-      get(name) {
+      get: function (name) {
         return this.$errors.get(name);
       }
     }

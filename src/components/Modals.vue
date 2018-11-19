@@ -10,17 +10,17 @@
 </template>
 <script>
   export default {
-    data() {
+    data: function () {
       return {
         modals: []
       };
     },
-    mounted() {
+    mounted: function () {
       this.$events.on('openModal', this.open);
       this.$events.on('closeModal', this.close);
     },
     methods: {
-      open(ref, options = {
+      open: function (ref, options = {
         content: 'Modal content'
       }) {
         let modal = this.exists(ref);
@@ -39,18 +39,18 @@
 
         this.showModal(ref);
       },
-      exists(ref) {
+      exists: function (ref) {
         return this.findModal(ref);
       },
-      findModal(ref) {
+      findModal: function (ref) {
         return this.modals.find(modal => modal.ref === ref);
       },
-      showModal(ref) {
+      showModal: function (ref) {
         this.$nextTick(function () {
           this.toggleModal(ref, 'open');
         });
       },
-      close(ref, options = {}) {
+      close: function (ref, options = {}) {
         if (this.exists(ref)) {
           this.closeModal(ref);
 
@@ -59,10 +59,10 @@
 
         // console.error(`The modal ${ref} does not exist.`);
       },
-      closeModal(ref) {
+      closeModal: function (ref) {
         this.toggleModal(ref, 'close');
       },
-      toggleModal(ref, action) {
+      toggleModal: function (ref, action) {
         let $modal = this.$refs[ref][0];
 
         $modal[action]();

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-  install(Vue) {
+  install: function (Vue) {
     axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
     let token = document.head.querySelector('meta[name="csrf-token"]');
