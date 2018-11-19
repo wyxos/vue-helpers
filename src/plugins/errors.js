@@ -1,7 +1,7 @@
 export default {
   install(Vue, options) {
     Vue.prototype.$errors = new Vue({
-      data() {
+      data: function () {
         return {
           errors: [
             {
@@ -12,7 +12,7 @@ export default {
         };
       },
       methods: {
-        setBag(errors, bag = 'default') {
+        setBag: function (errors, bag = 'default') {
           if (typeof errors === 'object') {
             let keys = Object.keys(errors);
 
@@ -26,22 +26,22 @@ export default {
 
           this.findBag(bag).items = errors;
         },
-        set(key, message, bag = 'default') {
+        set: function (key, message, bag = 'default') {
           this.findBag(bag).items.push({key, message});
         },
-        get(key, bag = 'default') {
+        get: function (key, bag = 'default') {
           return this.findBag(bag)
             .items.find(error => error.key === key)
             .message;
         },
-        remove(key, bag = 'default') {
+        remove: function (key, bag = 'default') {
           let errors = this.findBag(bag).items;
 
           let match = errors.findIndex(error => error.key === key);
 
           errors.splice(match, 1);
         },
-        clear(bag = 'default') {
+        clear: function (bag = 'default') {
           let match = this.findBag(bag);
 
           if (!match) {
@@ -50,13 +50,13 @@ export default {
 
           match.items = [];
         },
-        exists(key) {
+        exists: function (key) {
           return Boolean(this.find(key));
         },
-        findBag(bag = 'default') {
+        findBag: function (bag = 'default') {
           return this.errors.find(errorBag => errorBag.key === bag);
         },
-        find(key, bag = 'default') {
+        find: function (key, bag = 'default') {
           let match = this.findBag(bag);
 
           if (!match) {

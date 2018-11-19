@@ -1,20 +1,20 @@
 export default {
   install(Vue, options) {
     Vue.prototype.$state = new Vue({
-      data() {
+      data: function () {
         return {
           items: []
         };
       },
       methods: {
-        running(name) {
+        running: function (name) {
           if (!name) {
             return Boolean(this.items.length);
           }
 
           return Boolean(this.items.find(loader => loader.name === name));
         },
-        add(name) {
+        add: function (name) {
           if (this.running(name)) {
             return;
           }
@@ -23,7 +23,7 @@ export default {
             name
           });
         },
-        clear(name) {
+        clear: function (name) {
           if (!name) {
             this.items = [];
 
