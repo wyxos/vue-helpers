@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install: function (Vue, options) {
     Vue.prototype.$errors = new Vue({
       data: function () {
         return {
@@ -71,7 +71,7 @@ export default {
 
     Vue.mixin({
       computed: {
-        errors() {
+        errors: function () {
           return this.$errors.$data;
         }
       }
