@@ -1,13 +1,13 @@
 export default {
-  install: function (Vue, options) {
+  install(Vue, options) {
     Vue.prototype.$boolean = new Vue({
-      data: function () {
+      data() {
         return {
           states: []
         };
       },
       methods: {
-        toggle: function (key) {
+        toggle(key) {
           let match = this.find(key);
 
           if (!match) {
@@ -16,10 +16,10 @@ export default {
 
           match.value = !match.value;
         },
-        find: function (key) {
+        find(key) {
           return this.states.find(state => state.key === key);
         },
-        set: function (key, value = false) {
+        set(key, value = false) {
           let match = this.find(key);
 
           if (match) {
@@ -37,7 +37,7 @@ export default {
 
           return state;
         },
-        get: function (key) {
+        get(key) {
           let match = this.find(key);
           return match ? match.value : false;
         }

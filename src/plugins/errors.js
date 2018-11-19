@@ -1,7 +1,7 @@
 export default {
-  install: function (Vue, options) {
+  install(Vue, options) {
     Vue.prototype.$errors = new Vue({
-      data: function () {
+      data() {
         return {
           errors: [
             {
@@ -12,7 +12,7 @@ export default {
         };
       },
       methods: {
-        setBag: function (errors, bag = 'default') {
+        setBag(errors, bag = 'default') {
           if (typeof errors === 'object') {
             let keys = Object.keys(errors);
 
@@ -26,22 +26,22 @@ export default {
 
           this.findBag(bag).items = errors;
         },
-        set: function (key, message, bag = 'default') {
+        set(key, message, bag = 'default') {
           this.findBag(bag).items.push({key, message});
         },
-        get: function (key, bag = 'default') {
+        get(key, bag = 'default') {
           return this.findBag(bag)
             .items.find(error => error.key === key)
             .message;
         },
-        remove: function (key, bag = 'default') {
+        remove(key, bag = 'default') {
           let errors = this.findBag(bag).items;
 
           let match = errors.findIndex(error => error.key === key);
 
           errors.splice(match, 1);
         },
-        clear: function (bag = 'default') {
+        clear(bag = 'default') {
           let match = this.findBag(bag);
 
           if (!match) {
@@ -50,13 +50,13 @@ export default {
 
           match.items = [];
         },
-        exists: function (key) {
+        exists(key) {
           return Boolean(this.find(key));
         },
-        findBag: function (bag = 'default') {
+        findBag(bag = 'default') {
           return this.errors.find(errorBag => errorBag.key === bag);
         },
-        find: function (key, bag = 'default') {
+        find(key, bag = 'default') {
           let match = this.findBag(bag);
 
           if (!match) {
@@ -71,7 +71,7 @@ export default {
 
     Vue.mixin({
       computed: {
-        errors: function () {
+        errors() {
           return this.$errors.$data;
         }
       }
