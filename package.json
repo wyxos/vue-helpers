@@ -1,6 +1,6 @@
 {
   "name": "vue-helpers",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "src/orckid.js",
   "scripts": {
@@ -12,5 +12,8 @@
     "axios": "^0.18.0",
     "vue-events": "^3.1.0",
     "keen-ui": "github:JosephusPaye/Keen-UI#next"
+  },
+  "devDependencies": {
+    "laravel-mix": "^2.1.14"
   }
 }
