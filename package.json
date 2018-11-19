@@ -2,26 +2,12 @@
   "name": "vue-helpers",
   "version": "1.1.0",
   "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "webpack"
-  },
+  "main": "src/index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "vue-events": "^3.1.0",
     "keen-ui": "latest"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "babel-loader": "^8.0.4",
-    "cross-env": "^5.2.0",
-    "node-minify": "^3.6.0",
-    "vue-loader": "^15.4.2",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2"
   }
 }

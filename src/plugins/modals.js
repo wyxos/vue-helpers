@@ -1,6 +1,6 @@
 export default {
   install(Vue, options) {
-    Vue.component('modals', require('./components/Modals.vue'));
+    Vue.component('modals', require('../components/Modals.vue'));
 
     Vue.prototype.$modals = new Vue({
       methods: {
