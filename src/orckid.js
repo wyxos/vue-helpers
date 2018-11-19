@@ -1,9 +1,9 @@
-import errors from './errors';
+import KeenUi from 'keen-ui/dist/keen-ui.min';
 import events from 'vue-events';
+import errors from './errors';
 import state from './state';
 import modals from './modals';
 import boolean from './boolean';
-import KeenUi from 'keen-ui/dist/keen-ui.min';
 import axios from './axios-plugin';
 
 let mixin = {
