@@ -1,4 +1,4 @@
-import KeenUi from 'keen-ui/dist/keen-ui.min';
+import keenUi from 'keen-ui/dist/keen-ui.min';
 import events from 'vue-events';
 import errors from './errors';
 import state from './state';
@@ -50,7 +50,7 @@ let mixin = {
 
 export default {
   install(Vue, options) {
-    Vue.use(KeenUi);
+    Vue.use(keenUi);
     Vue.use(events);
     Vue.use(errors);
     Vue.use(state);
