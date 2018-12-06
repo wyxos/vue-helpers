@@ -37,7 +37,7 @@ export default {
           if (hasErrors && status === 422) {
             this.$errors.setBag(error.response.data.errors);
 
-            this.openModal('formErrors');
+            this.$modals.open('formErrors');
 
             throw error;
           }
@@ -52,7 +52,7 @@ export default {
 
           this.$errors.setBag(errors);
 
-          this.openModal('formErrors');
+          this.$modals.open('formErrors');
 
           throw error;
         }
