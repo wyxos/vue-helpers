@@ -1,11 +1,10 @@
 import keenUi from 'keen-ui/dist/keen-ui.min';
+import events from 'vue-events';
 import errors from './plugins/errors';
 import state from './plugins/state';
 import modals from './plugins/modals';
 import boolean from './plugins/boolean';
 import axios from './plugins/axios-plugin';
-
-const events = require('vue-events');
 
 export default {
   install(Vue, options) {
