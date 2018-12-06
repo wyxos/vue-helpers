@@ -1,16 +1,34 @@
 export default {
-  install(Vue, options) {
-    Vue.component('modals', require('../components/Modals.vue'));
-
+  install(Vue) {
     Vue.prototype.$modals = new Vue({
       methods: {
-        open(modal, options) {
-          this.$events.fire('openModal', modal, options);
+        open(modal) {
+          this.$events.fire('openModal', modal);
         },
-        close(modal, options) {
-          this.$events.fire('closeModal', modal, options);
+        close(modal) {
+          this.$events.fire('closeModal', modal);
         }
       }
     });
+
+    Vue.mixin({
+      mounted() {
+        this.$events.on('openModal', (modal) => {
+          let match = this.$refs[modal];
+          if (!match) {
+            return;
+          }
+          match.open();
+        });
+
+        this.$events.on('closeModal', (modal) => {
+          let match = this.$refs[modal];
+          if (!match) {
+            return;
+          }
+          match.close();
+        })
+      }
+    })
   }
 };
