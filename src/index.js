@@ -6,7 +6,7 @@ import modals from './plugins/modals';
 import boolean from './plugins/boolean';
 import axios from './plugins/axios-plugin';
 
-export default {
+module.exports = {
   install(Vue, options) {
     Vue.use(keenUi);
     Vue.use(events);
