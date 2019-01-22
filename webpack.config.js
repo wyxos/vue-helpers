@@ -6,7 +6,9 @@ module.exports = {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: 'index.js',
+    libraryTarget: 'window',
+    library: 'VueHelpers'
   },
   module: {
     rules: [
@@ -16,6 +18,11 @@ module.exports = {
         loader: 'vue-loader'
       }
     ]
+  },
+  externals: {
+    'axios': 'axios',
+    'vue-events': 'vue-events',
+    'keen-ui': 'keen-ui',
   },
   plugins: [
     // make sure to include the plugin!
