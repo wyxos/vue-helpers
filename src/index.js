@@ -69,6 +69,6 @@ let plugin = {
   }
 };
 
-module.exports = plugin;
+// module.exports = plugin;
 
 export default plugin;
