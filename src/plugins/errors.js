@@ -77,6 +77,6 @@ export default {
       }
     });
 
-    Vue.component('form-error', require('../components/FormErrors.vue').default);
+    Vue.component('form-error', require('../components/FormError.vue').default);
   }
 };
