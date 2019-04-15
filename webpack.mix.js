@@ -1,5 +1,7 @@
 let mix = require('laravel-mix');
 
+var nodeExternals = require('webpack-node-externals');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,9 +13,15 @@ let mix = require('laravel-mix');
  |
  */
 
-// mix.minify('src/index.js', 'dist/index.js');
-
-mix.js('src/demo.js', 'dist');
+mix.setPublicPath('dist')
+  .js('src/index.js', 'dist')
+  .webpackConfig({
+    externals: {
+      axios: 'axios',
+      'vue-events': 'vue-events',
+      'keen-ui': 'keen-ui'
+    }
+  })
 
 // Full API
 // mix.js(src, output);
