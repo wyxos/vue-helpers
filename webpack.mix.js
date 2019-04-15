@@ -1,6 +1,6 @@
 let mix = require('laravel-mix');
 
-var nodeExternals = require('webpack-node-externals');
+var PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -16,11 +16,9 @@ var nodeExternals = require('webpack-node-externals');
 mix.setPublicPath('dist')
   .js('src/index.js', 'dist')
   .webpackConfig({
-    externals: {
-      axios: 'axios',
-      'vue-events': 'vue-events',
-      'keen-ui': 'keen-ui'
-    }
+    plugins: [
+      new PeerDepsExternalsPlugin(),
+    ],
   })
 
 // Full API
