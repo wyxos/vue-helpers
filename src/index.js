@@ -6,7 +6,7 @@ import modals from './plugins/modals';
 import boolean from './plugins/boolean';
 import axios from './plugins/axios-plugin';
 
-let plugin = {
+export default {
   install(Vue, options) {
     Vue.use(keenUi);
     Vue.use(events);
@@ -73,7 +73,3 @@ let plugin = {
     };
   }
 };
-
-// module.exports = plugin;
-
-export default plugin;
