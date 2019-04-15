@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.prototype.$errors = new Vue({
       data() {
         return {
@@ -69,14 +69,6 @@ export default {
       }
     });
 
-    Vue.mixin({
-      computed: {
-        errors() {
-          return this.$errors.$data;
-        }
-      }
-    });
-
-    Vue.component('form-error', require('./components/FormErrors.vue'));
+    Vue.component('form-error', require('../components/FormError.vue').default);
   }
 };
