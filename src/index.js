@@ -17,6 +17,11 @@ let plugin = {
     Vue.use(axios);
 
     Vue.mixin({
+      computed: {
+        isLoading() {
+          return this.$state.running()
+        }
+      },
       methods: {
         openModal(ref) {
           this.$refs[ref].open();

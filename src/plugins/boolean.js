@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.prototype.$boolean = new Vue({
       data() {
         return {

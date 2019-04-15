@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.prototype.$errors = new Vue({
       data() {
         return {
@@ -65,14 +65,6 @@ export default {
 
           return match
             .items.find(error => error.key === key);
-        }
-      }
-    });
-
-    Vue.mixin({
-      computed: {
-        errors() {
-          return this.$errors.$data;
         }
       }
     });
