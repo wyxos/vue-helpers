@@ -1,4 +1,4 @@
-import keenUi from 'keen-ui/dist/keen-ui.min';
+import keenUi from 'keen-ui';
 import events from 'vue-events';
 import errors from './plugins/errors';
 import state from './plugins/state';
@@ -7,7 +7,7 @@ import boolean from './plugins/boolean';
 import axios from './plugins/axios-plugin';
 
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.use(keenUi);
     Vue.use(events);
     Vue.use(errors);
