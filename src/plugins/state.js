@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.prototype.$state = new Vue({
       data() {
         return {

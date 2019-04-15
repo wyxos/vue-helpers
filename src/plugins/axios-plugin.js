@@ -14,27 +14,25 @@ export default {
       console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
     }
 
-    Vue.prototype.$axios = function () {
-      instance.interceptors.request.use((config) => {
-        this.$errors.clear();
+    instance.interceptors.request.use((config) => {
+      this.$errors.clear();
 
-        this.$state.add('ajax');
+      this.$state.add('ajax');
 
-        return config;
-      });
+      return config;
+    });
 
-      instance.interceptors.response.use((response) => {
-        this.$state.clear('ajax');
-        return response;
-      }, (error) => {
-        this.$state.clear('ajax');
+    instance.interceptors.response.use((response) => {
+      this.$state.clear('ajax');
+      return response;
+    }, (error) => {
+      this.$state.clear('ajax');
 
-        this.handleError(error);
+      this.handleError(error);
 
-        return Promise.reject(error);
-      });
+      return Promise.reject(error);
+    });
 
-      return instance;
-    };
+    Vue.prototype.$axios = instance;
   }
 };
