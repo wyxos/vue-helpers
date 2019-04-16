@@ -19,6 +19,11 @@ mix.setPublicPath('dist')
     plugins: [
       new PeerDepsExternalsPlugin(),
     ],
+    output: {
+      library: 'VueHelpers',
+      libraryTarget: 'umd',
+      umdNamedDefine: true
+    }
   })
 
 // Full API
