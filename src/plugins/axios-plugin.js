@@ -2,8 +2,6 @@ const axios = require('axios');
 
 export default {
   install(Vue) {
-
-
     Vue.prototype.$axios = function(){
       let instance = axios.create();
 
