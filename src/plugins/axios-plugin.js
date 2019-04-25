@@ -2,37 +2,39 @@ const axios = require('axios');
 
 export default {
   install(Vue) {
-    let instance = axios.create();
 
-    instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-    let token = document.head.querySelector('meta[name="csrf-token"]');
+    Vue.prototype.$axios = function(){
+      let instance = axios.create();
 
-    if (token) {
-      instance.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-    } else {
-      console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-    }
+      instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-    instance.interceptors.request.use((config) => {
-      this.$errors.clear();
+      let token = document.head.querySelector('meta[name="csrf-token"]');
 
-      this.$state.add('ajax');
+      if (token) {
+        instance.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+      } else {
+        console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+      }
 
-      return config;
-    });
+      instance.interceptors.request.use((config) => {
+        this.$errors.clear();
 
-    instance.interceptors.response.use((response) => {
-      this.$state.clear('ajax');
-      return response;
-    }, (error) => {
-      this.$state.clear('ajax');
+        this.$state.add('ajax');
 
-      this.handleError(error);
+        return config;
+      });
 
-      return Promise.reject(error);
-    });
+      instance.interceptors.response.use((response) => {
+        this.$state.clear('ajax');
+        return response;
+      }, (error) => {
+        this.$state.clear('ajax');
 
-    Vue.prototype.$axios = instance;
+        this.handleError(error);
+
+        return Promise.reject(error);
+      });
+    };
   }
 };
