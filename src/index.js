@@ -23,10 +23,10 @@ export default {
         }
       },
       methods: {
-        openModal(ref) {
+        openUiModal(ref) {
           this.$refs[ref].open();
         },
-        closeModal(ref) {
+        closeUiModal(ref) {
           this.$refs[ref].close();
         },
         handleError(error) {
