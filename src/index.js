@@ -17,6 +17,23 @@ export default {
     Vue.use(axios);
 
     Vue.mixin({
+      mounted() {
+        this.$events.on('openModal', modal => {
+          if (!this.$refs[modal]) {
+            return
+          }
+
+          this.openModal(modal)
+        })
+
+        this.$events.on('closeModal', modal => {
+          if (!this.$refs[modal]) {
+            return
+          }
+
+          this.closeModal(modal)
+        })
+      },
       computed: {
         isLoading() {
           return this.$state.running()
@@ -39,6 +56,8 @@ export default {
           if (hasErrors) {
             Object.assign(errors, error.response.data.errors)
           }
+
+          this.$errors.setBag(errors);
 
           this.$modals.open('errorModal')
 
