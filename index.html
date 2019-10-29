@@ -3,6 +3,10 @@
 <body>
 <div id="app">
     <example></example>
+    <ui-modal ref="globalModal">
+        Global modal
+        <button @click="closeModal('globalModal')">Close global</button>
+    </ui-modal>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
