@@ -23,42 +23,26 @@ export default {
         }
       },
       methods: {
-        openUiModal(ref) {
+        openModal(ref) {
           this.$refs[ref].open();
         },
-        closeUiModal(ref) {
+        closeModal(ref) {
           this.$refs[ref].close();
         },
         handleError(error) {
-          const status = error && error.response ? error.response.status : 500;
+          this.$errors.status = error && error.response ? error.response.status : 500
 
           const hasErrors = error.response && error.response.data && error.response.data.errors;
 
-          if (status === 403) {
-            throw error;
+          let errors = {};
+
+          if (hasErrors) {
+            Object.assign(errors, error.response.data.errors)
           }
 
-          if (hasErrors && status === 422) {
-            this.$errors.setBag(error.response.data.errors);
+          this.$modals.open('errorModal')
 
-            this.$modals.open('formErrors');
-
-            throw error;
-          }
-
-          if ([401, 419].indexOf(status) > -1) {
-            throw error;
-          }
-
-          const errors = {
-            'unexpected_error': ['An unexpected error occurred']
-          };
-
-          this.$errors.setBag(errors);
-
-          this.$modals.open('formErrors');
-
-          throw error;
+          throw error
         }
       }
     });

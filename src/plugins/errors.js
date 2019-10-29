@@ -3,6 +3,7 @@ export default {
     Vue.prototype.$errors = new Vue({
       data() {
         return {
+          status: null,
           errors: [
             {
               key: 'default',
@@ -42,6 +43,8 @@ export default {
           errors.splice(match, 1);
         },
         clear(bag = 'default') {
+          this.status = null
+
           let match = this.findBag(bag);
 
           if (!match) {
@@ -65,6 +68,9 @@ export default {
 
           return match
             .items.find(error => error.key === key);
+        },
+        isStatus(code) {
+          return this.status === code;
         }
       }
     });
