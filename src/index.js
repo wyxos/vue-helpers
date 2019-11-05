@@ -59,9 +59,12 @@ export default {
 
           this.$errors.setBag(errors);
 
-          this.$modals.open('errorModal')
+          this.onFormError()
 
           throw error
+        },
+        onFormError() {
+          this.$modals.open('errorModal')
         }
       }
     });
