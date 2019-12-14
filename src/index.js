@@ -69,7 +69,7 @@ export default {
       }
     });
 
-    Vue.prototype.$route = function (name) {
+    Vue.prototype.$path = function (name) {
       if (!window.Laravel) {
         console.error('Laravel is not globally defined.');
         return;
