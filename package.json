@@ -1,5 +1,5 @@
 {
-  "name": "vue-helpers",
+  "name": "@wyxos/vue-helpers",
   "version": "1.5.0",
   "description": "",
   "main": "dist/index.js",
