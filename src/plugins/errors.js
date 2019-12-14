@@ -12,6 +12,26 @@ export default {
           ]
         };
       },
+      computed: {
+        isSuccessful(){
+          return this.isStatus(200)
+        },
+        isInvalid(){
+          return this.isStatus(422)
+        },
+        isUnexpected(){
+          return this.isStatus(500)
+        },
+        isExpired(){
+          return this.isStatus(419)
+        },
+        isUnderMaintenance(){
+          return this.isStatus(503)
+        },
+        isUnauthorized(){
+          return this.isStatus(403)
+        }
+      },
       methods: {
         setBag(errors, bag = 'default') {
           if (typeof errors === 'object') {
@@ -76,5 +96,7 @@ export default {
     });
 
     Vue.component('form-error', require('../components/FormError.vue').default);
+
+    Vue.component('error-modal', require('../components/ErrorModal.vue').default);
   }
 };

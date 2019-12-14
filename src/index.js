@@ -4,7 +4,7 @@ import errors from './plugins/errors';
 import state from './plugins/state';
 import modals from './plugins/modals';
 import boolean from './plugins/boolean';
-import axios from './plugins/axios-plugin';
+import axios from './plugins/axios';
 
 export default {
   install(Vue) {
@@ -69,7 +69,7 @@ export default {
       }
     });
 
-    Vue.prototype.$routes = function (name) {
+    Vue.prototype.$route = function (name) {
       if (!window.Laravel) {
         console.error('Laravel is not globally defined.');
         return;
