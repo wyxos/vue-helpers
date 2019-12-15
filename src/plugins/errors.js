@@ -1,3 +1,12 @@
+const CODES = {
+  SUCCESS: 200,
+  INVALID: 422,
+  UNEXPECTED: 500,
+  MAINTENANCE: 503,
+  EXPIRED: 419,
+  UNAUTHORIZED: 403
+}
+
 export default {
   install(Vue) {
     Vue.prototype.$errors = new Vue({
@@ -14,22 +23,22 @@ export default {
       },
       computed: {
         isSuccessful(){
-          return this.isStatus(200)
+          return this.isStatus(CODES.SUCCESS)
         },
         isInvalid(){
-          return this.isStatus(422)
+          return this.isStatus(CODES.INVALID)
         },
         isUnexpected(){
-          return this.isStatus(500)
+          return this.isStatus(CODES.UNEXPECTED)
         },
         isExpired(){
-          return this.isStatus(419)
+          return this.isStatus(CODES.EXPIRED)
         },
         isUnderMaintenance(){
-          return this.isStatus(503)
+          return this.isStatus(CODES.MAINTENANCE)
         },
         isUnauthorized(){
-          return this.isStatus(403)
+          return this.isStatus(CODES.UNAUTHORIZED)
         }
       },
       methods: {
