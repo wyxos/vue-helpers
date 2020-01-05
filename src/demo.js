@@ -21,9 +21,11 @@ new Vue({
                 })
         },
         showError(code){
-            this.$errors.status = code;
-
-            this.$modals.open('errorModal')
+            return this.$axios().get('https://undefined.com')
+                .then(response => response.data)
+                .then(data => {
+                    this.ajaxContent = data
+                })
         }
     }
 })
