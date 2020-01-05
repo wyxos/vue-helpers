@@ -1,6 +1,6 @@
 <template>
     <ui-modal ref="errorModal"
-              v-cloak title="Error">
+              v-cloak :title="title">
         <div class="text-center">
             <slot v-if="$errors.isUnderMaintenance" name="maintenance">The site is currently in maintenance. Try again in a moment.</slot>
             <slot v-if="$errors.isUnauthorized" name="unauthorized">This action is not allowed.</slot>
@@ -19,6 +19,9 @@
 </template>
 <script>
     export default {
-        name: "ErrorModal"
+        name: "ErrorModal",
+        props: {
+            title: 'Error'
+        }
     }
 </script>
