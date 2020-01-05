@@ -8,14 +8,6 @@ import axios from './plugins/axios';
 
 export default {
   install(Vue) {
-    Vue.use(keenUi);
-    Vue.use(events);
-    Vue.use(errors);
-    Vue.use(state);
-    Vue.use(modals);
-    Vue.use(boolean);
-    Vue.use(axios);
-
     Vue.mixin({
       mounted() {
         this.$events.on('openModal', modal => {
@@ -51,6 +43,14 @@ export default {
         }
       }
     });
+
+    Vue.use(keenUi);
+    Vue.use(events);
+    Vue.use(errors);
+    Vue.use(state);
+    Vue.use(modals);
+    Vue.use(boolean);
+    Vue.use(axios);
 
     Vue.prototype.$path = function (name) {
       if (!window.Laravel) {
