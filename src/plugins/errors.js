@@ -5,7 +5,8 @@ const CODES = {
   NOT_FOUND: 404,
   MAINTENANCE: 503,
   EXPIRED: 419,
-  UNAUTHORIZED: 403
+  UNAUTHORIZED: 403,
+  UNAUTHENTICATED: 401
 }
 
 export default {
@@ -43,6 +44,9 @@ export default {
         },
         isUnauthorized(){
           return this.isStatus(CODES.UNAUTHORIZED)
+        },
+        isUnauthenticated(){
+          return this.isStatus(CODES.UNAUTHENTICATED)
         }
       },
       methods: {
