@@ -45,6 +45,9 @@ export default {
         },
         closeModal(ref) {
           this.$refs[ref].close();
+        },
+        onFormError() {
+          this.$modals.open('errorModal')
         }
       }
     });
