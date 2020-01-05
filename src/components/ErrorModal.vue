@@ -9,12 +9,14 @@
             <slot v-if="$errors.isUnauthenticated" name="unauthenticated">You need to be logged in to perform this action.</slot>
             <slot v-if="$errors.isExpired" name="expired">The form has expired. Please reload the page and try again.</slot>
             <slot v-if="$errors.isInvalid" name="invalid">One or more fields are invalid. Please review and try again.</slot>
-            <slot name="actions">
-                <button class="btn btn-danger mt-4"
-                        type="button"
-                        @click="closeModal('errorModal')">Close
-                </button>
-            </slot>
+            <div>
+                <slot name="actions">
+                    <button class="btn btn-danger mt-4"
+                            type="button"
+                            @click="closeModal('errorModal')">Close
+                    </button>
+                </slot>
+            </div>
         </div>
     </ui-modal>
 </template>
