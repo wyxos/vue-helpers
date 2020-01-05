@@ -7,6 +7,13 @@
         Global modal
         <button @click="closeModal('globalModal')">Close global</button>
     </ui-modal>
+
+    <button @click="ajax">Ajax example</button>
+    <div v-if="ajaxContent">
+        <p>Ajax content:</p>
+        <p v-if="isLoading">Loading...</p>
+        <p>{{ ajaxContent }}</p>
+    </div>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>

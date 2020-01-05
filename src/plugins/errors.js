@@ -2,6 +2,7 @@ const CODES = {
   SUCCESS: 200,
   INVALID: 422,
   UNEXPECTED: 500,
+  NOT_FOUND: 404,
   MAINTENANCE: 503,
   EXPIRED: 419,
   UNAUTHORIZED: 403
@@ -24,6 +25,9 @@ export default {
       computed: {
         isSuccessful(){
           return this.isStatus(CODES.SUCCESS)
+        },
+        isNotFound(){
+          return this.isStatus(CODES.NOT_FOUND)
         },
         isInvalid(){
           return this.isStatus(CODES.INVALID)
@@ -100,6 +104,26 @@ export default {
         },
         isStatus(code) {
           return this.status === code;
+        },
+        handleError(error) {
+          this.$errors.status = error && error.response ? error.response.status : 500
+
+          const hasErrors = error.response && error.response.data && error.response.data.errors;
+
+          let errors = {};
+
+          if (hasErrors) {
+            Object.assign(errors, error.response.data.errors)
+          }
+
+          this.setBag(errors);
+
+          this.onFormError()
+
+          throw error
+        },
+        onFormError() {
+          this.$modals.open('errorModal')
         }
       }
     });

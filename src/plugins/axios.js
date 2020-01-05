@@ -17,11 +17,12 @@ export default {
 
       instance.interceptors.response.use((response) => {
         this.$state.clear(options.state);
+
         return response;
       }, (error) => {
         this.$state.clear(options.state);
 
-        this.handleError(error);
+        this.$errors.handleError(error);
 
         return Promise.reject(error);
       });

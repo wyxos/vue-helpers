@@ -45,26 +45,6 @@ export default {
         },
         closeModal(ref) {
           this.$refs[ref].close();
-        },
-        handleError(error) {
-          this.$errors.status = error && error.response ? error.response.status : 500
-
-          const hasErrors = error.response && error.response.data && error.response.data.errors;
-
-          let errors = {};
-
-          if (hasErrors) {
-            Object.assign(errors, error.response.data.errors)
-          }
-
-          this.$errors.setBag(errors);
-
-          this.onFormError()
-
-          throw error
-        },
-        onFormError() {
-          this.$modals.open('errorModal')
         }
       }
     });
