@@ -19,6 +19,11 @@ new Vue({
                 .then(data => {
                     this.ajaxContent = data
                 })
+        },
+        showError(code){
+            this.$errors.status = code;
+
+            this.$modals.open('errorModal')
         }
     }
 })

@@ -14,6 +14,13 @@
         <p v-if="isLoading">Loading...</p>
         <p>{{ ajaxContent }}</p>
     </div>
+
+    <div>
+        <p>Error modal</p>
+        <button @click="showError(401)">Unauthenticated</button>
+
+        <error-modal></error-modal>
+    </div>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
