@@ -121,9 +121,6 @@ export default {
           this.onFormError()
 
           throw error
-        },
-        onFormError() {
-          this.$modals.open('errorModal')
         }
       }
     });
