@@ -108,23 +108,6 @@ export default {
         },
         isStatus(code) {
           return this.status === code;
-        },
-        handleError(error) {
-          this.$errors.status = error && error.response ? error.response.status : 500
-
-          const hasErrors = error.response && error.response.data && error.response.data.errors;
-
-          let errors = {};
-
-          if (hasErrors) {
-            Object.assign(errors, error.response.data.errors)
-          }
-
-          this.setBag(errors);
-
-          this.onFormError()
-
-          throw error
         }
       }
     });

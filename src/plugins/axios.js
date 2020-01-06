@@ -22,7 +22,7 @@ export default {
       }, (error) => {
         this.$state.clear(options.state);
 
-        this.$errors.handleError(error).bind(this);
+        this.handleFormError(error);
 
         return Promise.reject(error);
       });

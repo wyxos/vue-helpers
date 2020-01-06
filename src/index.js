@@ -7,58 +7,75 @@ import boolean from './plugins/boolean';
 import axios from './plugins/axios';
 
 export default {
-  install(Vue) {
-    Vue.mixin({
-      mounted() {
-        this.$events.on('openModal', modal => {
-          if (!this.$refs[modal]) {
-            return
-          }
+    install(Vue) {
+        Vue.use(keenUi);
+        Vue.use(events);
+        Vue.use(errors);
+        Vue.use(state);
+        Vue.use(modals);
+        Vue.use(boolean);
+        Vue.use(axios);
 
-          this.openModal(modal)
-        })
+        Vue.mixin({
+            mounted() {
+                this.$events.on('openModal', modal => {
+                    if (!this.$refs[modal]) {
+                        return
+                    }
 
-        this.$events.on('closeModal', modal => {
-          if (!this.$refs[modal]) {
-            return
-          }
+                    this.openModal(modal)
+                })
 
-          this.closeModal(modal)
-        })
-      },
-      computed: {
-        isLoading() {
-          return this.$state.running()
-        }
-      },
-      methods: {
-        openModal(ref) {
-          this.$refs[ref].open();
-        },
-        closeModal(ref) {
-          this.$refs[ref].close();
-        },
-        onFormError() {
-          this.$modals.open('errorModal')
-        }
-      }
-    });
+                this.$events.on('closeModal', modal => {
+                    if (!this.$refs[modal]) {
+                        return
+                    }
 
-    Vue.use(keenUi);
-    Vue.use(events);
-    Vue.use(errors);
-    Vue.use(state);
-    Vue.use(modals);
-    Vue.use(boolean);
-    Vue.use(axios);
+                    this.closeModal(modal)
+                })
+            },
+            computed: {
+                isLoading() {
+                    return this.$state.running()
+                }
+            },
+            methods: {
+                openModal(ref) {
+                    this.$refs[ref].open();
+                },
+                closeModal(ref) {
+                    this.$refs[ref].close();
+                },
+                handleFormError(error) {
+                    this.$errors.status = error && error.response ? error.response.status : 500
 
-    Vue.prototype.$path = function (name) {
-      if (!window.Laravel) {
-        console.error('Laravel is not globally defined.');
-        return;
-      }
+                    const hasErrors = error.response && error.response.data && error.response.data.errors;
 
-      return name ? window.Laravel.routes[name] : window.Laravel.routes;
-    };
-  }
+                    let errors = {};
+
+                    if (hasErrors) {
+                        Object.assign(errors, error.response.data.errors)
+                    }
+
+                    this.$errors.setBag(errors);
+
+                    this.onFormError()
+
+                    throw error
+                },
+                onFormError() {
+                    this.$modals.open('errorModal')
+                }
+            }
+        });
+
+        Vue.prototype.$path = function (name) {
+            if (!window.Laravel) {
+                console.error('Laravel is not globally defined.');
+                return;
+            }
+
+            return name ? window.Laravel.routes[name] : window.Laravel.routes;
+        };
+    }
 };
