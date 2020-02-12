@@ -1,6 +1,6 @@
 {
   "name": "@wyxos/vue-helpers",
-  "version": "1.6.12",
+  "version": "1.7.12",
   "description": "Helpers for Vue with Laravel or projects with Laravel Mix",
   "main": "dist/index.js",
   "scripts": {
