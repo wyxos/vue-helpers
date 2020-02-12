@@ -5,6 +5,7 @@ import state from './plugins/state';
 import modals from './plugins/modals';
 import boolean from './plugins/boolean';
 import axios from './plugins/axios';
+import cookies from './plugins/cookies';
 
 export default {
     install(Vue) {
@@ -15,6 +16,7 @@ export default {
         Vue.use(modals);
         Vue.use(boolean);
         Vue.use(axios);
+        Vue.use(cookies);
 
         Vue.mixin({
             mounted() {
