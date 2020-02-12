@@ -28,7 +28,7 @@ export default {
           return null
         },
         delete (name) {
-          this.createCookie(name, '', -1)
+          this.create(name, '', -1)
         }
       }
     });
