@@ -25,7 +25,7 @@ export default {
                         return
                     }
 
-                    this.openModal(modal)
+                    this.openUiModal(modal)
                 })
 
                 this.$events.on('closeModal', modal => {
@@ -33,7 +33,7 @@ export default {
                         return
                     }
 
-                    this.closeModal(modal)
+                    this.closeUiModal(modal)
                 })
             },
             computed: {
@@ -42,10 +42,10 @@ export default {
                 }
             },
             methods: {
-                openModal(ref) {
+                openUiModal(ref) {
                     this.$refs[ref].open();
                 },
-                closeModal(ref) {
+                closeUiModal(ref) {
                     this.$refs[ref].close();
                 },
                 handleFormError(error) {
