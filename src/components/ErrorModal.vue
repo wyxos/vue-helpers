@@ -19,7 +19,7 @@
                 <slot name="actions">
                     <button class="btn btn-danger mt-4"
                             type="button"
-                            @click="closeModal('errorModal')">Close
+                            @click="closeUiModal('errorModal')">Close
                     </button>
                 </slot>
             </div>
