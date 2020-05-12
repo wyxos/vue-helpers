@@ -1,6 +1,6 @@
 {
   "name": "@wyxos/vue-helpers",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Helpers for Vue with Laravel or projects with Laravel Mix",
   "main": "dist/index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint": "eslint --fix src"
   },
   "author": "Joey J",
   "license": "MIT",
@@ -21,7 +22,14 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.1",
-    "laravel-mix": "^4.1.4",
+    "eslint": "^7.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "laravel-mix": "^5.0.1",
     "peer-deps-externals-webpack-plugin": "^1.0.4",
     "vue-template-compiler": "^2.6.11",
     "webpack-node-externals": "^1.7.2"

@@ -1,11 +1,11 @@
 export default {
-  install(Vue) {
+  install (Vue) {
     Vue.prototype.$cookies = new Vue({
       methods: {
         create (name, value, days) {
           let expires
           if (days) {
-            let date = new Date()
+            const date = new Date()
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
             expires = '; expires=' + date.toGMTString()
           } else {
@@ -14,8 +14,8 @@ export default {
           document.cookie = name + '=' + value + expires + '; path=/; secure; SameSite=Lax;'
         },
         read (name) {
-          let nameEQ = name + '='
-          let ca = document.cookie.split(';')
+          const nameEQ = name + '='
+          const ca = document.cookie.split(';')
           for (let i = 0; i < ca.length; i++) {
             let c = ca[i]
             while (c.charAt(0) === ' ') {
@@ -31,6 +31,6 @@ export default {
           this.create(name, '', -1)
         }
       }
-    });
+    })
   }
-};
+}

@@ -10,9 +10,9 @@ const CODES = {
 }
 
 export default {
-  install(Vue) {
+  install (Vue) {
     Vue.prototype.$errors = new Vue({
-      data() {
+      data () {
         return {
           status: null,
           errors: [
@@ -21,99 +21,99 @@ export default {
               items: []
             }
           ]
-        };
+        }
       },
       computed: {
-        isSuccessful(){
+        isSuccessful () {
           return this.isStatus(CODES.SUCCESS)
         },
-        isNotFound(){
+        isNotFound () {
           return this.isStatus(CODES.NOT_FOUND)
         },
-        isInvalid(){
+        isInvalid () {
           return this.isStatus(CODES.INVALID)
         },
-        isUnexpected(){
+        isUnexpected () {
           return this.isStatus(CODES.UNEXPECTED)
         },
-        isExpired(){
+        isExpired () {
           return this.isStatus(CODES.EXPIRED)
         },
-        isUnderMaintenance(){
+        isUnderMaintenance () {
           return this.isStatus(CODES.MAINTENANCE)
         },
-        isUnauthorized(){
+        isUnauthorized () {
           return this.isStatus(CODES.UNAUTHORIZED)
         },
-        isUnauthenticated(){
+        isUnauthenticated () {
           return this.isStatus(CODES.UNAUTHENTICATED)
         }
       },
       methods: {
-        setBag(errors, bag = 'default') {
+        setBag (errors, bag = 'default') {
           if (typeof errors === 'object') {
-            let keys = Object.keys(errors);
+            const keys = Object.keys(errors)
 
             errors = keys.map(key => {
               return {
                 key,
                 message: errors[key][0]
-              };
-            });
+              }
+            })
           }
 
-          this.findBag(bag).items = errors;
+          this.findBag(bag).items = errors
         },
-        set(key, message, bag = 'default') {
-          this.findBag(bag).items.push({key, message});
+        set (key, message, bag = 'default') {
+          this.findBag(bag).items.push({ key, message })
         },
-        get(key, bag = 'default') {
+        get (key, bag = 'default') {
           return this.findBag(bag)
             .items.find(error => error.key === key)
-            .message;
+            .message
         },
-        remove(key, bag = 'default') {
-          let errors = this.findBag(bag).items;
+        remove (key, bag = 'default') {
+          const errors = this.findBag(bag).items
 
-          let match = errors.findIndex(error => error.key === key);
+          const match = errors.findIndex(error => error.key === key)
 
-          errors.splice(match, 1);
+          errors.splice(match, 1)
         },
-        clear(bag = 'default') {
+        clear (bag = 'default') {
           this.status = null
 
-          let match = this.findBag(bag);
+          const match = this.findBag(bag)
 
           if (!match) {
-            return;
+            return
           }
 
-          match.items = [];
+          match.items = []
         },
-        exists(key) {
-          return Boolean(this.find(key));
+        exists (key) {
+          return Boolean(this.find(key))
         },
-        findBag(bag = 'default') {
-          return this.errors.find(errorBag => errorBag.key === bag);
+        findBag (bag = 'default') {
+          return this.errors.find(errorBag => errorBag.key === bag)
         },
-        find(key, bag = 'default') {
-          let match = this.findBag(bag);
+        find (key, bag = 'default') {
+          const match = this.findBag(bag)
 
           if (!match) {
-            return null;
+            return null
           }
 
           return match
-            .items.find(error => error.key === key);
+            .items.find(error => error.key === key)
         },
-        isStatus(code) {
-          return this.status === code;
+        isStatus (code) {
+          return this.status === code
         }
       }
-    });
+    })
 
-    Vue.component('form-error', require('../components/FormError.vue').default);
+    Vue.component('form-error', require('../components/FormError.vue').default)
 
-    Vue.component('error-modal', require('../components/ErrorModal.vue').default);
+    Vue.component('error-modal', require('../components/ErrorModal.vue').default)
   }
-};
+}
