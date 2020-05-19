@@ -3,16 +3,12 @@
 <body>
 <div id="app">
     <example></example>
-    <ui-modal ref="globalModal">
-        Global modal
-        <button @click="closeUiModal('globalModal')">Close global</button>
-    </ui-modal>
 
     <button @click="ajax">Ajax example</button>
-    <div v-if="ajaxContent">
+    <div>
         <p>Ajax content:</p>
         <p v-if="isLoading">Loading...</p>
-        <p>{{ ajaxContent }}</p>
+        <p v-if="ajaxContent">{{ ajaxContent }}</p>
     </div>
 
     <div>
@@ -22,6 +18,10 @@
 
         <error-modal></error-modal>
     </div>
+
+    <modal ref="globalModal">
+        <p>Global modal content</p>
+    </modal>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>

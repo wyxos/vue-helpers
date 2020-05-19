@@ -1,7 +1,7 @@
 <template>
-    <ui-modal ref="errorModal"
+    <modal ref="errorModal"
               v-cloak :title="title">
-        <div class="text-center">
+        <div>
             <slot v-if="$errors.isUnderMaintenance" name="maintenance">The site is currently in maintenance. Try again
                 in a moment.
             </slot>
@@ -24,7 +24,7 @@
                 </slot>
             </div>
         </div>
-    </ui-modal>
+    </modal>
 </template>
 <script>
     export default {
