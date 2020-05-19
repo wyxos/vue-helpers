@@ -1,4 +1,4 @@
-import keenUi from 'keen-ui'
+// import keenUi from 'keen-ui'
 import events from 'vue-events'
 import errors from './plugins/errors'
 import state from './plugins/state'
@@ -6,10 +6,12 @@ import modals from './plugins/modals'
 import boolean from './plugins/boolean'
 import axios from './plugins/axios'
 import cookies from './plugins/cookies'
+import Modal from './components/Modal'
 
 export default {
   install (Vue) {
-    Vue.use(keenUi)
+    // Vue.use(keenUi)
+    Vue.component('modal', Modal)
     Vue.use(events)
     Vue.use(errors)
     Vue.use(state)

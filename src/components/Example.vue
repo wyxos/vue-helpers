@@ -1,8 +1,8 @@
 <template>
     <div>
-        <ui-modal ref="exampleModal">
+        <modal ref="exampleModal">
             <button @click="closeUiModal('exampleModal')">Close</button>
-        </ui-modal>
+        </modal>
         <button @click="openUiModal('exampleModal')">
             Open
         </button>
