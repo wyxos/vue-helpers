@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 export default {
-  install (Vue, options = {
-    axios: {
-      state: 'ajax',
-      onSuccess: null,
-      onError: null
-    }
+  install (Vue, globalParams = {
+    state: 'ajax',
+    onSuccess: null,
+    onError: null
   }) {
-    Vue.prototype.$axios = function (options = {
+    Vue.prototype.$axios = function (instanceParams = {
       state: 'ajax',
       onSuccess: null,
       onError: null
     }) {
+      const options = Object.assign(globalParams, instanceParams)
+
       const instance = axios.create()
 
       instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'

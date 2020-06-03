@@ -28,7 +28,7 @@ const app = new Vue({
     },
     customErrorHandler () {
       return this.$axios({
-        showError: () => {
+        onError: () => {
           console.log('custom error')
         }
       }).get('https://laravel.com/test')
