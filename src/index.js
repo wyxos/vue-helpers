@@ -12,7 +12,8 @@ export default {
   install (Vue, options = {
     axios: {
       state: 'ajax',
-      showError: null
+      onSuccess: null,
+      onError: null
     }
   }) {
     // Vue.use(keenUi)
