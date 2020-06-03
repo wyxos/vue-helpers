@@ -4,12 +4,14 @@ export default {
   install (Vue, options = {
     axios: {
       state: 'ajax',
-      showError: null
+      onSuccess: null,
+      onError: null
     }
   }) {
     Vue.prototype.$axios = function (options = {
       state: 'ajax',
-      showError: null
+      onSuccess: null,
+      onError: null
     }) {
       const instance = axios.create()
 
@@ -25,6 +27,10 @@ export default {
 
       instance.interceptors.response.use((response) => {
         this.$state.clear(options.state)
+
+        if (options.onSuccess) {
+          options.onSuccess(response)
+        }
 
         return response
       }, (error) => {
@@ -42,8 +48,8 @@ export default {
 
         this.$errors.setBag(errors)
 
-        if (options.showError) {
-          options.showError(error)
+        if (options.onError) {
+          options.onError(error)
         }
 
         return Promise.reject(error)
