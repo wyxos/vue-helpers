@@ -1,10 +1,15 @@
-const axios = require('axios')
+import axios from 'axios'
 
 export default {
-  install (Vue) {
+  install (Vue, options = {
+    axios: {
+      state: 'ajax',
+      showError: null
+    }
+  }) {
     Vue.prototype.$axios = function (options = {
       state: 'ajax',
-      errorModal: null
+      showError: null
     }) {
       const instance = axios.create()
 
@@ -25,12 +30,20 @@ export default {
       }, (error) => {
         this.$state.clear(options.state)
 
-        this.handleFormError(error)
+        this.$errors.status = error && error.response ? error.response.status : 500
 
-        if (options.errorModal === null) {
-          this.onFormError()
-        } else if (options.errorModal) {
-          options.errorModal(error)
+        const hasErrors = error.response && error.response.data && error.response.data.errors
+
+        const errors = {}
+
+        if (hasErrors) {
+          Object.assign(errors, error.response.data.errors)
+        }
+
+        this.$errors.setBag(errors)
+
+        if (options.showError) {
+          options.showError(error)
         }
 
         return Promise.reject(error)

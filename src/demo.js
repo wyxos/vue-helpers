@@ -28,10 +28,10 @@ const app = new Vue({
     },
     customErrorHandler () {
       return this.$axios({
-        errorModal: () => {
-          console.log(this.$state.items)
+        showError: () => {
+          console.log('custom error')
         }
-      }).get('https://undefined.com')
+      }).get('https://laravel.com/test')
         .then(response => response.data)
         .then(data => {
           this.ajaxContent = data
