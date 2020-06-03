@@ -9,7 +9,12 @@ import cookies from './plugins/cookies'
 import Modal from './components/Modal'
 
 export default {
-  install (Vue) {
+  install (Vue, options = {
+    axios: {
+      state: 'ajax',
+      showError: null
+    }
+  }) {
     // Vue.use(keenUi)
     Vue.component('modal', Modal)
     Vue.use(events)
@@ -17,7 +22,7 @@ export default {
     Vue.use(state)
     Vue.use(modals)
     Vue.use(boolean)
-    Vue.use(axios)
+    Vue.use(axios, options.axios)
     Vue.use(cookies)
 
     Vue.mixin({
@@ -49,22 +54,6 @@ export default {
         },
         closeUiModal (ref) {
           this.$refs[ref].close()
-        },
-        handleFormError (error) {
-          this.$errors.status = error && error.response ? error.response.status : 500
-
-          const hasErrors = error.response && error.response.data && error.response.data.errors
-
-          const errors = {}
-
-          if (hasErrors) {
-            Object.assign(errors, error.response.data.errors)
-          }
-
-          this.$errors.setBag(errors)
-        },
-        onFormError () {
-          this.$modals.open('errorModal')
         }
       }
     })
