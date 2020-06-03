@@ -11,7 +11,11 @@ export default {
       onSuccess: null,
       onError: null
     }) {
-      const options = Object.assign(globalParams, instanceParams)
+      const state = globalParams.state || instanceParams.state
+
+      const onError = globalParams.onError || instanceParams.onError
+
+      const onSuccess = globalParams.onSuccess || instanceParams.onSuccess
 
       const instance = axios.create()
 
@@ -20,21 +24,21 @@ export default {
       instance.interceptors.request.use((config) => {
         this.$errors.clear()
 
-        this.$state.add(options.state)
+        this.$state.add(state)
 
         return config
       })
 
       instance.interceptors.response.use((response) => {
-        this.$state.clear(options.state)
+        this.$state.clear(state)
 
-        if (options.onSuccess) {
-          options.onSuccess(response)
+        if (onSuccess) {
+          onSuccess(response)
         }
 
         return response
       }, (error) => {
-        this.$state.clear(options.state)
+        this.$state.clear(state)
 
         this.$errors.status = error && error.response ? error.response.status : 500
 
@@ -48,8 +52,8 @@ export default {
 
         this.$errors.setBag(errors)
 
-        if (options.onError) {
-          options.onError(error)
+        if (onError) {
+          onError(error)
         }
 
         return Promise.reject(error)
