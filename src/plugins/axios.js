@@ -11,11 +11,13 @@ export default {
       onSuccess: null,
       onError: null
     }) {
-      const state = globalParams.state || instanceParams.state
+      const state = instanceParams.state || globalParams.state
 
-      const onError = globalParams.onError || instanceParams.onError
+      const onError = instanceParams.onError || globalParams.onError
 
-      const onSuccess = globalParams.onSuccess || instanceParams.onSuccess
+      const onSuccess = instanceParams.onSuccess || globalParams.onSuccess
+
+      console.log(onSuccess)
 
       const instance = axios.create()
 

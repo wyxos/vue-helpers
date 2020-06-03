@@ -2,7 +2,16 @@ import Vue from 'vue'
 import helpers from './index'
 import Example from './components/Example'
 
-Vue.use(helpers)
+Vue.use(helpers, {
+  axios: {
+    onSuccess (response) {
+      console.log('cool')
+    },
+    onError (error) {
+      console.log('default error')
+    }
+  }
+})
 
 const app = new Vue({
   components: {
