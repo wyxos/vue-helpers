@@ -17,8 +17,6 @@ export default {
 
       const onSuccess = instanceParams.onSuccess || globalParams.onSuccess
 
-      console.log(onSuccess)
-
       const instance = axios.create()
 
       instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
