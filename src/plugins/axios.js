@@ -1,65 +1,67 @@
 import axios from 'axios'
 
 export default {
-  install (Vue, globalParams = {
-    state: 'ajax',
-    onSuccess: null,
-    onError: null
-  }) {
-    Vue.prototype.$axios = function (instanceParams = {
-      state: 'ajax',
-      onSuccess: null,
-      onError: null
+    install(Vue, globalParams = {
+        state: 'ajax',
+        onSuccess: null,
+        onError: null,
+        options: null
     }) {
-      const state = instanceParams.state || globalParams.state
+        Vue.prototype.$axios = function (instanceParams = {
+            state: 'ajax',
+            onSuccess: null,
+            onError: null,
+            options: null
+        }) {
+            const state = instanceParams.state || globalParams.state
 
-      const onError = instanceParams.onError || globalParams.onError
+            const onError = instanceParams.onError || globalParams.onError
 
-      const onSuccess = instanceParams.onSuccess || globalParams.onSuccess
+            const onSuccess = instanceParams.onSuccess || globalParams.onSuccess
 
-      const instance = axios.create()
+            const instance = axios.create(instanceParams.options || globalParams.options)
 
-      instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+            instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
-      instance.interceptors.request.use((config) => {
-        this.$errors.clear()
+            instance.interceptors.request.use((config) => {
+                this.$errors.clear()
 
-        this.$state.add(state)
+                this.$state.add(state)
 
-        return config
-      })
+                return config
+            })
 
-      instance.interceptors.response.use((response) => {
-        this.$state.clear(state)
+            instance.interceptors.response.use((response) => {
+                this.$state.clear(state)
 
-        if (onSuccess) {
-          onSuccess(response)
+                if (onSuccess) {
+                    onSuccess(response)
+                }
+
+                return response
+            }, (error) => {
+                this.$state.clear(state)
+
+                this.$errors.status = error && error.response ? error.response.status : 500
+
+                const hasErrors = error.response && error.response.data && error.response.data.errors
+
+                const errors = {}
+
+                if (hasErrors) {
+                    Object.assign(errors, error.response.data.errors)
+                }
+
+                this.$errors.setBag(errors)
+
+                if (onError) {
+                    onError(error)
+                }
+
+                return Promise.reject(error)
+            })
+
+            return instance
         }
-
-        return response
-      }, (error) => {
-        this.$state.clear(state)
-
-        this.$errors.status = error && error.response ? error.response.status : 500
-
-        const hasErrors = error.response && error.response.data && error.response.data.errors
-
-        const errors = {}
-
-        if (hasErrors) {
-          Object.assign(errors, error.response.data.errors)
-        }
-
-        this.$errors.setBag(errors)
-
-        if (onError) {
-          onError(error)
-        }
-
-        return Promise.reject(error)
-      })
-
-      return instance
     }
-  }
 }
