@@ -112,7 +112,7 @@ export default {
           const match = this.findBag(bag)
 
           if (!match) {
-            return null
+            return false
           }
 
           return match
