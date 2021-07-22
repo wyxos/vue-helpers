@@ -62,10 +62,22 @@ export default {
             })
           }
 
-          this.findBag(bag).items = errors
+          const match = this.findBag(bag)
+
+          if (!match) {
+            this.errors.push({
+              key: bag,
+              items: []
+            })
+          }
+
+          match.items = errors
         },
         set (key, message, bag = 'default') {
-          this.findBag(bag).items.push({ key, message })
+          this.findBag(bag).items.push({
+            key,
+            message
+          })
         },
         get (key, bag = 'default') {
           return this.findBag(bag)
