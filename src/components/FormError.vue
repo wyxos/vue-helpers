@@ -1,23 +1,27 @@
 <template>
     <span class="error"
-          v-if="exists(name)">{{ get(name) }}</span>
+          v-if="exists">{{ get() }}</span>
 </template>
 <script>
-  export default {
-    name: 'FormError',
-    props: {
-      name: {
-        type: String,
-        required: true
-      }
+export default {
+  name: 'FormError',
+  props: {
+    name: {
+      type: String,
+      required: true
     },
-    methods: {
-      exists(name) {
-        return this.$errors.exists(name);
-      },
-      get(name) {
-        return this.$errors.get(name);
-      }
+    bag: {
+      type: String,
+      default: 'default'
     }
-  };
+  },
+  methods: {
+    exists () {
+      return this.$errors.exists(this.name, this.bag)
+    },
+    get () {
+      return this.$errors.get(this.name, this.bag)
+    }
+  }
+}
 </script>
