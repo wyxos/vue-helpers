@@ -62,16 +62,7 @@ export default {
             })
           }
 
-          const match = this.findBag(bag)
-
-          if (!match) {
-            this.errors.push({
-              key: bag,
-              items: []
-            })
-          }
-
-          match.items = errors
+          this.findBag(bag).items = errors
         },
         set (key, message, bag = 'default') {
           this.findBag(bag).items.push({
@@ -106,6 +97,15 @@ export default {
           return Boolean(this.find(key))
         },
         findBag (bag = 'default') {
+          const match = this.errors.find(errorBag => errorBag.key === bag)
+
+          if (!match) {
+            this.errors.push({
+              key: bag,
+              items: []
+            })
+          }
+
           return this.errors.find(errorBag => errorBag.key === bag)
         },
         find (key, bag = 'default') {
