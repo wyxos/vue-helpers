@@ -93,8 +93,8 @@ export default {
 
           match.items = []
         },
-        exists (key) {
-          return Boolean(this.find(key))
+        exists (key, bag) {
+          return Boolean(this.find(key, bag))
         },
         findBag (bag = 'default') {
           const match = this.errors.find(errorBag => errorBag.key === bag)
