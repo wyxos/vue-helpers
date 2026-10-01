@@ -1,0 +1,99 @@
+{
+  "policyVersion": 1,
+  "repository": "wyxos/vue-helpers",
+  "enabled": false,
+  "mode": "report-only",
+  "runnerImplemented": false,
+  "schedule": {
+    "enabled": false,
+    "proposedFrequency": "daily",
+    "machine": "NOVA"
+  },
+  "permissions": {
+    "readRepositoryAndAlerts": true,
+    "createIsolatedLocalCandidate": false,
+    "commitLocalCandidate": false,
+    "pushFutureCandidateBranch": false,
+    "integrateDefaultBranch": false,
+    "publishPackageOrRelease": false,
+    "openPullRequest": false,
+    "enableAutoMerge": false,
+    "dismissOrDisableAlerts": false,
+    "changeAccessOrRepositorySettings": false
+  },
+  "eligibility": {
+    "securityUpdatesOnly": true,
+    "requiredDependencyScope": "development-only-transitive",
+    "requireReviewedAllowlistEntryForEveryChangedPackagePath": true,
+    "allowlist": [],
+    "allowedVersionChange": "same-resolved-major-and-minor, patch-increase-only",
+    "allowPrerelease": false,
+    "requireAllExistingParentRangesSatisfied": true,
+    "requireSameProductionAndPeerResolution": true,
+    "allowedSourceFiles": ["package-lock.json"],
+    "allowedGeneratedFilesAfterVerifiedBuild": [
+      "dist/index.js",
+      "dist/demo.js",
+      "dist/manifest.js",
+      "dist/mix-manifest.json"
+    ],
+    "maxChangedPackagePaths": 8,
+    "allowAddedOrRemovedPackagePaths": false,
+    "allowManifestOrOverrideChanges": false,
+    "allowInstallScriptOrEngineChanges": false,
+    "requireManualReview": [
+      "runtime or peer dependency changes, including Axios, Vue and vue-events",
+      "pre-1.0 minor changes",
+      "major changes, prereleases, new dependency paths or removed dependency paths",
+      "manifest ranges, overrides, resolutions, lockfile format or registry changes",
+      "Mix, webpack, Babel, Vue compiler, loaders, minimizers, polyfills or CSS build tools",
+      "development server, certificate generation or crypto behavior",
+      "unfixed advisories, incompatible parent ranges or unknown dependency scope"
+    ]
+  },
+  "gates": {
+    "requireCleanNewWorktree": true,
+    "requireExpectedRemoteBaseCommit": true,
+    "requirePinnedVerifiedNodeAndNpm": true,
+    "requireSerializedInstallAndBuild": true,
+    "requireReproducibleNpmCi": true,
+    "requireFreshFullAndProductionAudit": true,
+    "requireTargetAdvisoryAbsentAtEveryAffectedPath": true,
+    "requireNoNewAdvisoryIdsOrAffectedPaths": true,
+    "requireNoSeverityIncrease": true,
+    "requireProductionAuditNoRegression": true,
+    "requireMatchingBaselineAndCandidateRegistrySnapshot": true,
+    "requireUnitTests": true,
+    "requireProductionBuild": true,
+    "requireDevelopmentBuild": true,
+    "requireLintNoNewDiagnostics": true,
+    "requirePackedTarballExportsAndPeerExternalization": true,
+    "requireRealBrowserConsumerFixtures": true,
+    "requireChangedAdvisoryRegressionTest": true,
+    "requireCompleteEvidenceBeforeAnyCommitOrPush": true,
+    "consumerMatrix": {
+      "implementedAndPassing": false,
+      "vue": ["2.6.12", "2.7.16"],
+      "axios": ["0.34.0"],
+      "vueTemplateCompilerMustMatchVueExactly": true,
+      "loadModes": ["commonjs", "browser-umd"],
+      "checks": [
+        "install packed tarball into isolated consumer, with its own lockfile",
+        "verify documented exports and callable APIs",
+        "mount FormError and modal components in a real browser",
+        "exercise FormMixin validation, submission and error propagation",
+        "exercise Axios plugin defaults, request configuration and interceptor behavior",
+        "verify Vue and Axios remain external in the UMD bundle",
+        "compare generated artifacts and packed file list against the passing baseline"
+      ]
+    }
+  },
+  "failureBehavior": {
+    "missingEvidenceOrFailedGate": "stop-and-report-for-human-review",
+    "newUpstreamCommit": "discard-candidate-and-restart-from-new-base",
+    "dirtyUserCheckout": "leave-untouched-and-use-new-worktree",
+    "unexpectedDiffOrUnknownScope": "stop-and-report-for-human-review",
+    "registryOrAuditError": "stop; never treat missing audit data as clean",
+    "rollback": "retain-evidence-and-stop; no force pushes or automatic default-branch reverts"
+  }
+}

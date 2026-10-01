@@ -10,12 +10,14 @@
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint": "eslint --fix src"
+    "lint": "eslint --fix src",
+    "test": "node --test test/*.test.cjs",
+    "lint:check": "eslint src"
   },
   "author": "Joey J",
   "license": "MIT",
   "peerDependencies": {
-    "axios": "^0.32.0",
+    "axios": "^0.34.0",
     "vue": "^2.6.10",
     "vue-events": "^3.1.0"
   },
@@ -34,7 +36,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "axios": "^0.32.0",
+    "axios": "^0.34.0",
     "vue": "^2.6.11",
     "vue-events": "^3.1.0"
   },
@@ -45,5 +47,10 @@
   "bugs": {
     "url": "https://github.com/wyxos/vue-helpers/issues"
   },
-  "homepage": "https://github.com/wyxos/vue-helpers#readme"
+  "homepage": "https://github.com/wyxos/vue-helpers#readme",
+  "overrides": {
+    "selfsigned": {
+      "node-forge": "1.4.0"
+    }
+  }
 }
